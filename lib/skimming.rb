@@ -1,0 +1,6 @@
+require 'skimming/configuration'
+require 'skimming/model'
+require 'skimming/parasite_model'
+require 'skimming/skimmer'
+require 'models/skimming/collection_filter'
+require 'generators/skimming_migration_generator'
