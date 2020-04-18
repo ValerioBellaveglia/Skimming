@@ -17,7 +17,7 @@ module Skimming
       return collection if filters_rules.empty?
 
       skimming_result = collection.select do |collection_object|
-        instance_variable_set("@#{collection_object.class.name.downcase}", collection_object)
+        instance_variable_set("@#{collection_name}", collection_object)
 
         filters_rules.all? { |rule| eval rule }
       end
@@ -29,6 +29,7 @@ module Skimming
       set_instance_variables
 
       skimming_associations = Skimming.configuration.options[subject.class.name.underscore][:skim_through] if skimming_associations.blank?
+      skimming_associations = [skimming_associations] unless skimming_associations.respond_to? :each
       skimming_result = []
 
       skimming_associations.each do |association_name|
